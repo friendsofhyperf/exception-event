@@ -5,7 +5,7 @@ This file is part of friendsofhyperf/exception-event.
 
 @link     https://github.com/friendsofhyperf/exception-event
 @document https://github.com/friendsofhyperf/exception-event/blob/main/README.md
-@contact  hdj@addcn.com
+@contact  huangdijia@gmail.com
 EOF;
 
 return PhpCsFixer\Config::create()
