@@ -1,0 +1,33 @@
+{
+    "name": "friendsofhyperf/exception-event",
+    "description": "Exception Event For Hyperf.",
+    "homepage": "https://github.com/friendsofhyperf/exception-event",
+    "authors": [{
+        "name": "huangdijia",
+        "email": "huangdijia@gmail.com"
+    }],
+    "type": "library",
+    "license": "MIT",
+    "require": {
+        "hyperf/event": "^2.1",
+        "hyperf/exception-handler": "^2.1"
+    },
+    "autoload": {
+        "FriendsOfHyperf\\ExceptionEvent\\": "src"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^2.14",
+        "hyperf/di": "^2.1",
+        "hyperf/utils": "^2.1",
+        "phpstan/phpstan": "^0.12"
+    },
+    "extra": {
+        "hyperf": {
+            "config": "FriendsOfHyperf\\ExceptionEvent\\ConfigProvider"
+        }
+    },
+    "scripts": {
+        "cs-fix": "php-cs-fixer fix $1",
+        "analyse": "phpstan analyse --memory-limit 300M -l 0 -c phpstan.neon ./src"
+    }
+}
