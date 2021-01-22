@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 /**
- * This file is part of frientsofhyperf/exception-event.
+ * This file is part of friendsofhyperf/exception-event.
  *
- * @link     https://github.com/frientsofhyperf/exception-event
- * @document https://github.com/frientsofhyperf/exception-event/blob/main/README.md
+ * @link     https://github.com/friendsofhyperf/exception-event
+ * @document https://github.com/friendsofhyperf/exception-event/blob/main/README.md
  * @contact  hdj@addcn.com
  */
 namespace FriendsOfHyperf\ExceptionEvent\Event;

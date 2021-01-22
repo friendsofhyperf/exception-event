@@ -1,4 +1,4 @@
-# frientsofhyperf/exception-event
+# friendsofhyperf/exception-event
 
 [![Latest Stable Version](https://poser.pugx.org/friendsofhyperf/exception-event/version.png)](https://packagist.org/packages/friendsofhyperf/exception-event)
 [![Total Downloads](https://poser.pugx.org/friendsofhyperf/exception-event/d/total.png)](https://packagist.org/packages/friendsofhyperf/exception-event)
@@ -9,5 +9,5 @@ Exception Event For Hyperf.
 ## Installation
 
 ```bash
-composer require frientsofhyperf/exception-event
+composer require friendsofhyperf/exception-event
 ```
