@@ -9,17 +9,21 @@
     "type": "library",
     "license": "MIT",
     "require": {
-        "hyperf/event": "^2.1",
         "hyperf/exception-handler": "^2.1"
     },
     "autoload": {
         "psr-4": {
             "FriendsOfHyperf\\ExceptionEvent\\": "src"
-        }
+        },
+        "files": [
+            "src/helpers.php"
+        ]
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.14",
         "hyperf/di": "^2.1",
+        "hyperf/event": "^2.1",
+        "hyperf/framework": "^2.1",
         "hyperf/utils": "^2.1",
         "phpstan/phpstan": "^0.12"
     },
@@ -27,6 +31,9 @@
         "hyperf": {
             "config": "FriendsOfHyperf\\ExceptionEvent\\ConfigProvider"
         }
+    },
+    "config": {
+        "sort-packages": true
     },
     "scripts": {
         "cs-fix": "php-cs-fixer fix $1",
