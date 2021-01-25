@@ -8,8 +8,10 @@ declare(strict_types=1);
  * @document https://github.com/friendsofhyperf/exception-event/blob/main/README.md
  * @contact  huangdijia@gmail.com
  */
+use FriendsOfHyperf\ExceptionEvent\Event\ExceptionDispatched;
 use Hyperf\Utils\ApplicationContext;
 use Hyperf\Utils\Context;
+use Psr\Container\ContainerInterface;
 use Psr\EventDispatcher\EventDispatcherInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -26,10 +28,15 @@ if (! function_exists('report')) {
         }
 
         if (ApplicationContext::hasContainer()) {
+            /** @var ServerRequestInterface $request */
             $request = Context::get(ServerRequestInterface::class);
+            /** @var ResponseInterface $response */
             $response = Context::get(ResponseInterface::class);
-
-            ApplicationContext::getContainer()->get(EventDispatcherInterface::class)->dispatch($exception, $request, $response);
+            /** @var ContainerInterface $container */
+            $container = ApplicationContext::getContainer();
+            /** @var EventDispatcherInterface $eventDispatcher */
+            $eventDispatcher = $container->get(EventDispatcherInterface::class);
+            $eventDispatcher->dispatch(new ExceptionDispatched($exception, $request, $response));
         }
     }
 }
