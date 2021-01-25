@@ -19,7 +19,7 @@ class ExceptionDispatched
     /**
      * @var Throwable
      */
-    public $exception;
+    public $throwable;
 
     /**
      * @var null|ServerRequestInterface
@@ -31,10 +31,18 @@ class ExceptionDispatched
      */
     public $response;
 
-    public function __construct(Throwable $exception, ?ServerRequestInterface $request = null, ?ResponseInterface $response = null)
+    public function __construct(Throwable $throwable, ?ServerRequestInterface $request = null, ?ResponseInterface $response = null)
     {
-        $this->exception = $exception;
+        $this->throwable = $throwable;
         $this->request = $request;
         $this->response = $response;
+    }
+
+    /**
+     * @return Throwable
+     */
+    public function getThrowable()
+    {
+        return $this->throwable;
     }
 }
