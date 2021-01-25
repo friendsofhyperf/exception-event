@@ -13,24 +13,14 @@ namespace FriendsOfHyperf\ExceptionEvent\Listener;
 use FriendsOfHyperf\ExceptionEvent\Event\ExceptionDispatched;
 use Hyperf\Event\Contract\ListenerInterface;
 use Hyperf\Framework\Event\BootApplication;
+use Hyperf\Utils\ApplicationContext;
 use Hyperf\Utils\Context;
-use Psr\Container\ContainerInterface;
 use Psr\EventDispatcher\EventDispatcherInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
 class BootApplicationListener implements ListenerInterface
 {
-    /**
-     * @var EventDispatcherInterface
-     */
-    protected $eventDispatcher;
-
-    public function __construct(ContainerInterface $container)
-    {
-        $this->eventDispatcher = $container->get(EventDispatcherInterface::class);
-    }
-
     public function listen(): array
     {
         return [
@@ -44,12 +34,16 @@ class BootApplicationListener implements ListenerInterface
     public function process(object $event)
     {
         set_exception_handler(function ($exception) {
+            /** @var \Psr\Container\ContainerInterface $container */
+            $container = ApplicationContext::getContainer();
+            /** @var EventDispatcherInterface $eventDispatcher */
+            $eventDispatcher = $container->get(EventDispatcherInterface::class);
             /** @var null|ServerRequestInterface $request */
             $request = Context::get(ServerRequestInterface::class);
             /** @var null|ResponseInterface $response */
             $response = Context::get(ResponseInterface::class);
 
-            $this->eventDispatcher->dispatch(new ExceptionDispatched($exception, $request, $response));
+            $eventDispatcher->dispatch(new ExceptionDispatched($exception, $request, $response));
         });
     }
 }
