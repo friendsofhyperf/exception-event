@@ -16,7 +16,7 @@ use Psr\EventDispatcher\EventDispatcherInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
-if (! function_exists('report')) {
+if (class_exists('Hyperf\Utils\ApplicationContext') && ! function_exists('report')) {
     /**
      * @param string|Throwable $exception
      * @param array ...$arguments
@@ -24,7 +24,7 @@ if (! function_exists('report')) {
     function report($exception = 'RuntimeException', ...$parameters)
     {
         if (is_string($exception)) {
-            $exception = class_exists($exception) ? new $exception(...$parameters) : new RuntimeException($exception);
+            $exception = class_exists($exception) ? new $exception(...$parameters) : new RuntimeException($exception, ...$parameters);
         }
 
         if (ApplicationContext::hasContainer()) {
@@ -52,7 +52,11 @@ if (! function_exists('report_if')) {
     function report_if($condition, $exception = 'RuntimeException', ...$parameters)
     {
         if ($condition) {
-            report($exception, ...$parameters);
+            if (is_string($exception)) {
+                $exception = class_exists($exception) ? new $exception(...$parameters) : new RuntimeException($exception, ...$parameters);
+            }
+
+            report($exception);
         }
 
         return $condition;
@@ -70,7 +74,11 @@ if (! function_exists('report_unless')) {
     function report_unless($condition, $exception = 'RuntimeException', ...$parameters)
     {
         if (! $condition) {
-            report($exception, ...$parameters);
+            if (is_string($exception)) {
+                $exception = class_exists($exception) ? new $exception(...$parameters) : new RuntimeException($exception, ...$parameters);
+            }
+
+            report($exception);
         }
 
         return $condition;
