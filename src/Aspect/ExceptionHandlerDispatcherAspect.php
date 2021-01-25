@@ -28,7 +28,6 @@ class ExceptionHandlerDispatcherAspect extends AbstractAspect
 {
     public $classes = [
         'Hyperf\\ExceptionHandler\\ExceptionHandlerDispatcher::dispatch',
-        'Symfony\\Component\\Console\\Application::renderThrowable',
     ];
 
     /**
