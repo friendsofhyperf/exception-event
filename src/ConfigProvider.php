@@ -25,7 +25,7 @@ class ConfigProvider
             ],
             'commands' => [],
             'listeners' => [
-                Listener\BootApplicationListener::class,
+                // Listener\BootApplicationListener::class,
             ],
             'publish' => [],
         ];
